@@ -9,6 +9,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 
+import com.fwk.music.R;
+
 /**
  * Created by wenke on 2018/2/28.
  * 引导页面，停留若干秒，自动消失
@@ -59,16 +61,22 @@ public class SplashScreen {
                 Window window = splashDialog.getWindow();
                 switch (animation){
                     case SLIDE_LEFT:
-                        window.setWindowAnimations();
+                        window.setWindowAnimations(R.style.dialog_anim_slide_left);
                         break;
                     case SLIDE_UP:
+                        window.setWindowAnimations(R.style.dialog_anim_slide_up);
                         break;
                     case SLIDE_OUT:
+                        window.setWindowAnimations(R.style.dialog_anim_slide_out);
                     break;
                     default:
                 }
+                splashDialog.setContentView(layout);
+                splashDialog.setCancelable(false);
+                splashDialog.show();
             }
         };
+        mActivity.runOnUiThread(runnable);
     }
 
     public void removeSplahDialog(){
